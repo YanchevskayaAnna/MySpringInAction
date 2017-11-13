@@ -1,8 +1,0 @@
-<component name="ArtifactManager">
-  <artifact type="war" name="MySpringInAction:war">
-    <output-path>$PROJECT_DIR$/target</output-path>
-    <root id="archive" name="SiA.war">
-      <element id="artifact" artifact-name="MySpringInAction:war exploded" />
-    </root>
-  </artifact>
-</component>
