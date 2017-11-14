@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+
+    <!--default-init-method="turnOnLights"-->
+    <!--default-destroy-method="turnOffLights">-->
+
+    <bean id="duke" class="chapter2.performers.Juggler" />
+
+    <!--<bean id="duke"-->
+          <!--class="com.springinaction.springidol.Juggler">-->
+        <!--<constructor-arg value="15" />-->
+    <!--</bean>-->
+
+    <bean id="sonnet29" class="chapter2.poems.Sonnet29" />
+
+    <bean id="poeticDuke"
+          class="chapter2.performers.PoeticJuggler">
+        <constructor-arg value="15" />
+        <constructor-arg ref="sonnet29" />
+    </bean>
+
+    <bean id="theStage"
+          class="chapter2.Stage"
+          factory-method="getInstance" />
+
+    <!--<bean id="ticket"-->
+          <!--class="com.springinaction.springidol.Ticket" scope="prototype" />-->
+
+    <bean id="auditorium"
+          class="chapter2.Auditorium"
+          init-method="turnOnLights"
+          destroy-method="turnOffLights"/>
+
+    <!--<bean id="kenny"-->
+          <!--class="chapter2.performers.Instrumentalist" />-->
+
+    <!--<bean id="kenny"-->
+          <!--class="chapter2.performers.Instrumentalist">-->
+        <!--<property name="song" value="Jingle Bells" />-->
+    <!--</bean>-->
+
+    <!--<bean id="kenny"-->
+          <!--class="com.springinaction.springidol.Instrumentalist">-->
+        <!--<property name="song" value="Jingle Bells" />-->
+        <!--<property name="age" value="37" />-->
+    <!--</bean>-->
+
+    <bean id="saxophone"
+          class="chapter2.instruments.Saxophone" />
+
+    <bean id="kenny"
+          class="chapter2.performers.Instrumentalist">
+        <property name="song" value="Jingle Bells" />
+        <property name="instrument" ref="saxophone" />
+    </bean>
+
+    <bean id="piano"
+          class="chapter2.instruments.Piano" />
+
+    <!--<bean id="kenny"-->
+          <!--class="chapter2.performers.Instrumentalist">-->
+        <!--<property name="song" value="Jingle Bells" />-->
+        <!--<property name="instrument" ref="piano" />-->
+    <!--</bean>-->
+
+    <!--<bean id="kenny"-->
+          <!--class="com.springinaction.springidol.Instrumentalist">-->
+        <!--<property name="song" value="Jingle Bells" />-->
+        <!--<property name="instrument">-->
+            <!--<bean class="org.springinaction.springidol.Saxophone" />-->
+        <!--</property>-->
+    <!--</bean>-->
+
+    <bean id="duke2"
+          class="chapter2.performers.PoeticJuggler">
+    <constructor-arg value="15" />
+    <constructor-arg>
+        <bean class="chapter2.poems.Sonnet29" />
+    </constructor-arg>
+    </bean>
+
+    <!-- add   xmlns:p="http://www.springframework.org/schema/p"-->
+    <bean id="kenny3" class="chapter2.performers.Instrumentalist"
+          p:song = "Jingle Bells"
+          p:instrument-ref = "saxophone" />
+
+    <!--<bean id="hank"-->
+          <!--class="chapter2.performers.OneManBand">-->
+        <!--<property name="instruments">-->
+            <!--<list>-->
+                <!--<ref bean="guitar" />-->
+                <!--<ref bean="cymbal" />-->
+                <!--<ref bean="harmonica" />-->
+            <!--</list>-->
+        <!--</property>-->
+    <!--</bean>-->
+
+    <!--<bean id="hank"-->
+          <!--class="chapter2.performers.OneManBand">-->
+        <!--<property name="instruments">-->
+            <!--<set>-->
+                <!--<ref bean="guitar" />-->
+                <!--<ref bean="cymbal" />-->
+                <!--<ref bean="harmonica" />-->
+                <!--<ref bean="harmonica" />-->
+            <!--</set>-->
+        <!--</property>-->
+    <!--</bean>-->
+
+    <!--<bean id="hank" class="chapter2.performers.OneManBand">-->
+        <!--<property name="instruments">-->
+            <!--<map>-->
+                <!--<entry key="GUITAR" value-ref="guitar" />-->
+                <!--<entry key="CYMBAL" value-ref="cymbal" />-->
+                <!--<entry key="HARMONICA" value-ref="harmonica" />-->
+            <!--</map>-->
+        <!--</property>-->
+    <!--</bean>-->
+
+
+    <!--private Properties instruments;-->
+    <!--public void setInstruments(Properties instruments) {-->
+    <!--this.instruments = instruments;-->
+    <!--}-->
+
+    <!--<bean id="hank" class="chapter2.performers.OneManBand">-->
+        <!--<property name="instruments">-->
+            <!--<props>-->
+                <!--<prop key="GUITAR">STRUM STRUM STRUM</prop>-->
+                <!--<prop key="CYMBAL">CRASH CRASH CRASH</prop>-->
+                <!--<prop key="HARMONICA">HUM HUM HUM</prop>-->
+            <!--</props>-->
+        <!--</property>-->
+    <!--</bean>-->
+
+
+    <!--<property name="someNonNullProperty"><null/></property>-->
+
+    <!--<property name="count" value="#{5}"/>-->
+    <!--<property name="message" value="The value is #{5}"/>-->
+    <!--<property name="frequency" value="#{89.7}"/>-->
+    <!--<property name="capacity" value="#{1e4}"/>-->
+    <!--<property name='name' value='#{"Chuck"}'/>-->
+    <!--<property name="enabled" value="#{false}"/>-->
+    <!--<property name="instrument" value="#{saxophone}"/>-->
+    <!--<property name="instrument" ref="saxophone"/>-->
+
+    <!--<bean id="carl"-->
+          <!--class="chapter2.performers.Instrumentalist">-->
+        <!--<property name="song" value="#{kenny.song}" />-->
+    <!--</bean>-->
+
+    <!--<property name="song" value="#{songSelector.selectSong().toUpperCase()}"/>-->
+
+    <!--<property name="song" value="#{songSelector.selectSong()?.toUpperCase()}"/>-->
+    <!--<property name="multiplier" value="#{T(java.lang.Math).PI}"/>-->
+    <!--<property name="randomNumber" value="#{T(java.lang.Math).random()}"/>-->
+    <!--<property name="adjustedAmount" value="#{counter.total + 42}"/>-->
+    <!--<property name="adjustedAmount" value="#{counter.total - 20}"/>-->
+
+    <!--<property name="circumference" value="#{2 * T(java.lang.Math).PI * circle.radius}"/>-->
+    <!--<property name="average" value="#{counter.total / counter.count}"/>-->
+    <!--<property name="remainder" value="#{counter.total % counter.count}"/>-->
+
+    <!--<property name="area" value="#{T(java.lang.Math).PI * circle.radius ^ 2}"/>-->
+    <!--<property name="fullName"-->
+              <!--value="#{performer.firstName + ' ' + performer.lastName}"/>-->
+
+    <!--<property name="equal" value="#{counter.total == 100}"/>-->
+    <!--<property name="hasCapacity" value="#{counter.total le 100000}"/>-->
+    <!--<property name="largeCircle"-->
+              <!--value="#{shape.kind == 'circle' and shape.perimeter gt 10000}"/>-->
+    <!--<property name="outOfStock" value="#{!product.available}"/>-->
+    <!--<property name="outOfStock" value="#{not product.available}"/>-->
+
+    <!--трехместный(тернарный) оператор (?:):-->
+    <!--<property name="instrument"-->
+              <!--value="#{songSelector.selectSong()=='Jingle Bells'?piano:saxophone}"/>-->
+
+    <!--<property name="song"-->
+              <!--value="#{kenny.song != null ? kenny.song : 'Greensleeves'}"/>-->
+
+    <!--оператор Элвиса-->
+    <!--<property name="song" value="#{kenny.song ?: 'Greensleeves'}"/>-->
+
+    <!--<property name="validEmail" value=-->
+            <!--"#{admin.email matches '[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.com'}"/>-->
+
+
+    <util:list id="cities">
+        <bean class="chapter2.City"
+              p:name="Chicago" p:state="IL" p:population="2853114"/>
+        <bean class="chapter2.City"
+              p:name="Atlanta" p:state="GA" p:population="537958"/>
+        <bean class="chapter2.City"
+              p:name="Dallas" p:state="TX" p:population="1279910"/>
+        <bean class="chapter2.City"
+              p:name="Houston" p:state="TX" p:population="2242193"/>
+        <bean class="chapter2.City"
+              p:name="Odessa" p:state="TX" p:population="90943"/>
+        <bean class="chapter2.City"
+              p:name="El Paso" p:state="TX" p:population="613190"/>
+        <bean class="chapter2.City"
+              p:name="Jal" p:state="NM" p:population="1996"/>
+        <bean class="chapter2.City"
+              p:name="Las Cruces" p:state="NM" p:population="91865"/>
+    </util:list>
+
+
+    <!--<property name="chosenCity" value="#{cities[2]}"/>-->
+
+    <!--<property name="chosenCity"-->
+              <!--value="#{cities[T(java.lang.Math).random() * cities.size()]}"/>-->
+
+    <!--<property name="chosenCity" value="#{cities['Dallas']}"/>-->
+
+    <!--<util:properties id="settings"-->
+                     <!--location="classpath:settings.properties"/>-->
+
+    <!--<property name="accessToken" value="#{settings['twitter.accessToken']}"/>-->
+
+    <!--<property name="homePath" value="#{systemEnvironment['HOME']}"/>-->
+
+    <!--<property name="homePath" value="#{systemProperties['application.home']}"/>-->
+
+    <!--<property name="bigCities" value="#{cities.?[population gt 100000]}"/>-->
+
+    <!--<property name="aBigCity" value="#{cities.^[population gt 100000]}"/>-->
+
+    <!--<property name="aBigCity" value="#{cities.$[population gt 100000]}"/>-->
+
+    <!--<property name="cityNames" value="#{cities.![name]}"/>-->
+
+    <!--<property name="cityNames" value="#{cities.![name + ', ' + state]}"/>-->
+
+    <!--<property name="cityNames"-->
+              <!--value="#{cities.?[population gt 100000].![name + ', ' + state]}"/>-->
+
+</beans>
